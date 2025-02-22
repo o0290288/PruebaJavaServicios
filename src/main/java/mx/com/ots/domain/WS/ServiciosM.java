@@ -8,15 +8,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServiciosM {
-//    @Autowired
     private WebClient webClient;
 
-//    @Autowired
     private WebClient webClientId;
 
     private final String  CHARACTERURL = "http://gateway.marvel.com/v1/public/characters?ts=1&apikey=b9ee21dd00af3912675a53623f33e923&hash=a11d5b53da9bed8098ee983c2ad8828a";
     private final String CHARACTERIDURL = "http://gateway.marvel.com/v1/public/characters/{characterId}?ts=1&apikey=b9ee21dd00af3912675a53623f33e923&hash=a11d5b53da9bed8098ee983c2ad8828a";
 
+    /**
+     * Metodo que couslta los personajes de marvel
+     * @return
+     */
     public String charter() {
         webClient = WebClient.create(CHARACTERURL);
         String response = webClient
@@ -30,6 +32,11 @@ public class ServiciosM {
         return response;
     }
 
+    /**
+     * Consulta personaje por id
+     * @param id
+     * @return
+     */
     public String charterId(Long id) {
         webClientId = WebClient.create(CHARACTERIDURL);
         String response = webClientId
